@@ -40,15 +40,14 @@ class HomeAdapter (private val list: MutableList<Model>, val fm: FragmentManager
         val model: Model = list[position]
         holder.bind(model, object : HomeListener{
             override fun onItemSelected(item: Model) {
-                TODO("Not yet implemented")
 
+                HomeViewModel.itemSelected = true
+                EditItemFragment.editModel = HomeActivity.homeViewModel.getModelById(item.id.toInt())
+//                fm.beginTransaction().add(R.id.edit_item_content_frame, EditItemFragment()).commit()
             }
 
         })
         holder.itemView.setOnClickListener {
-            HomeViewModel.itemSelected = true
-            EditItemFragment.editModel = HomeActivity.homeViewModel.getModelById(it.id)
-            fm.beginTransaction().add(R.id.edit_item_content_frame, EditItemFragment())
         }
     }
     fun setList(newList: List<Model>){

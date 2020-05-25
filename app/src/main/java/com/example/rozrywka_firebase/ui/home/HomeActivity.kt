@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
         homeAdapter = HomeAdapter(itemList, supportFragmentManager)
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
+        //setSupportActionBar(toolbar_top)
 
         HomeViewModel.db.myRef.child("test").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {

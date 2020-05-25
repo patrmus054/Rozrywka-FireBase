@@ -1,6 +1,7 @@
 package com.example.rozrywka_firebase.ui.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,8 +15,12 @@ import com.example.rozrywka_firebase.data.Model
 import com.example.rozrywka_firebase.ui.home.HomeActivity.Companion.homeViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_item_fragment.*
+import kotlinx.android.synthetic.main.edit_item_fragment.view.*
 
 class EditItemFragment : Fragment() {
+
+//    var editTextTitle: EditText = EditText(Activity())
+//    var editTextDate: EditText = EditText(Activity())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         val root = inflater.inflate(R.layout.edit_item_fragment, container, false)
@@ -24,6 +29,8 @@ class EditItemFragment : Fragment() {
             et_date.setText(editModel.date)
 
         }
+//        editTextTitle = root.et_title
+//        editTextDate = root.et_date
         return root
     }
     companion object{
@@ -34,7 +41,20 @@ class EditItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bt_submit.setOnClickListener {
+        bt_submit.setOnClickListener{
+//            if(HomeViewModel.itemSelected){
+//                if(et_title.text.toString() != "" && et_date.text.toString() != ""){
+//                    val item: Model = Model(editModel.id,et_title.text.toString(), et_date.text.toString(),
+//                        HomeViewModel.itemType, HomeViewModel.itemSeen)
+//
+//                    homeViewModel.addItem(item)
+//                    HomeViewModel.db.addItem(item)
+//                    HomeViewModel.itemSelected = false
+//                    fragmentManager?.beginTransaction()?.remove(this)?.commit()
+//                }else{
+//                    Toast.makeText(requireContext(), "Unable to create Item", Toast.LENGTH_SHORT).show()
+//                }
+//            }
             if(et_title.text.toString() != "" && et_date.text.toString() != ""){
                 val item: Model = Model(HomeViewModel.count,et_title.text.toString(), et_date.text.toString(),
                     HomeViewModel.itemType, HomeViewModel.itemSeen)
@@ -74,6 +94,10 @@ class EditItemFragment : Fragment() {
             Log.v("changed", if(b){"zmiana"}else{"nic"} )
             HomeViewModel.itemSeen = b
         }
+//        if(HomeViewModel.itemSelected){
+//            editTextTitle.setText(editModel.title)
+//            editTextDate.setText(editModel.date)
+//        }
     }
 
 }
